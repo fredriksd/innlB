@@ -26,6 +26,20 @@ Q = M*P;
 x_rotated = Q(1,:);
 y_rotated = Q(2,:);
 plot(x,y(x)), hold on
-plot(x_rotated,y_rotated)
-plot([0,L*cosd(phi)],[0,-L*sind(phi)]), hold off
-legend('Ikke-rotert system', 'Rotert system')
+plot([0, x_rotated],[0, y_rotated])
+plot([0,L*cosd(phi)],[0,-L*sind(phi)])
+plot([0 80],[0 0]), hold off 
+legend('Kastebane, ikke-rotert','Kastebane,rotert','Skråplan')
+
+max = max_distance(y_rotated);
+disp(max)
+
+function max = max_distance(yval)
+    max = 0;
+    for i = 1:length(yval)
+        temp = yval(i);
+        if max < temp
+           max = temp; 
+        end
+    end
+end
