@@ -1,4 +1,7 @@
 %Oppg 4a - d, DRONE
+%Resten av denne oppgaven finner du i
+%innlb_oppg_4e_g.m
+
 clear, close
 v_0 = 20;
 theta = 45;
@@ -28,12 +31,13 @@ y_rotated = Q(2,:);
 plot(x,y(x)), hold on
 plot([0, x_rotated],[0, y_rotated])
 plot([0,L*cosd(phi)],[0,-L*sind(phi)])
-plot([0 80],[0 0]), hold off 
+plot([0 80],[0 0],x(200),y(x(200)),'xm'), hold off 
 xlabel('Lateral distance (m)'), ylabel('Vertical distance (m)')
-legend('Kastebane, ikke-rotert','Kastebane,rotert','Skraaplan')
+legend('Kastebane, ikke-rotert','Kastebane,rotert','Skraaplan'...
+    ,'Horisontlinje','Hoyest punkt relativt skraaplan')
 
 max = max_distance(y_rotated);
-disp(max)
+fprintf('Maksdistanse fra skraaplan i hoyde (m) : %.2f\n',max)
 
 function max = max_distance(yval)
     max = 0;

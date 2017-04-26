@@ -22,17 +22,11 @@ v_0x = v_0*cosd(theta)*cosd(phi);
 v_0y = v_0*cosd(theta)*sind(phi);
 v_0z = v_0*sind(theta);
 
-while(z(i) >= -x(i)*tand(ksi)) %-L*sind(ksi)
+while(z(i) >= -x(i)*tand(ksi)) 
    t(i+1) = t(i) + dt;
    x(i+1) = x0 + v_0x*t(i);
    y(i+1) = y0 + v_0y*t(i);
    z(i+1) = z0 + v_0z*t(i) - 1/2*g*t(i).^2;
-%   h(i+1) = x(i+1)*sind(ksi)+z(i+1)*cosd(ksi);
-%    if i>2
-%        if h(i-2)<h(i-1) && h(i-1)>h(i)
-%            %disp(h(i-1))
-%        end
-%    end
    i = i+1;
 end
 
@@ -53,7 +47,7 @@ t_intp = (t(end)+t(end-1))/2;
 
 
 %Bruker ikke de roterte z-koordinatene, da jeg 
-%allerede har z-koordinaten for n?r den treffer bakken
+%allerede har z-koordinaten for naar den treffer bakken
 %fra while-loopen ovenfor.
 
 %Interpolering av z
@@ -71,4 +65,7 @@ fimplicit3(@(x,y,z) sind(ksi)*x+cosd(ksi)*z,[0,70,-40,40,-20,20]...
     ,'MeshDensity',4), hold on, axis equal
 plot3(x,y,z)
 plot3(x_intp,y_intp,z_intp, 'x'), hold off
+xlabel('Distance (m)'), zlabel('Height (m)')
+legend('Rotated plane', 'Projectile projectory', 'Landing point')
+
 
